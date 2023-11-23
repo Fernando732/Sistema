@@ -1,0 +1,108 @@
+* {
+    font-family: sans-serif;
+    color: #FFFFFF;
+}
+
+/*COLOR DE FONDO DE LA BARRA DE NAVEGACION Y DEL TEXTO*/
+.nav-link {
+    color: #FFFFFF;
+}
+
+.barraMenu {
+    background-color: #0c3b2e;
+    border: 2px solid #bb8a52;
+}
+
+/*IMAGEN DE FONDO CON SUS RESPECTIVAS DIEMNSIONES, NOMBRE Y "SLOGAN"*/ 
+.tituloPag {
+    background-image: url('/static/img/bosque2.jpg');
+    height: 720px;
+    padding-top: 100px;
+}
+.slogan {
+    font-size: 30px;
+    color: #FFFFFF;
+}
+
+/*INICIO DE SESION*/
+.inicioSesion {
+    margin: auto;
+    background: #6d9773;
+    border: none;
+}
+
+/*SECCION NOSOTROS*/
+
+.nosotros {
+    background: #0c3b2e;
+    border: 2px solid #bb8a52;
+}
+
+.titulos {
+    font-size: 45px;
+    margin-top: 40px;
+    color: #bb8a52;
+}
+
+.columNos {
+    border: 2px solid #bb8a52;
+}
+
+.colorLabel {
+    color: #854700;
+}
+
+.informacion {
+    background-color: #0c3b2e; 
+    margin-left: -2px;
+    border: 2px solid #bb8a52;
+}
+
+
+.img1 {
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+    margin-left: 10px;
+  }
+
+/*Modal*/
+
+.nombreModal{
+    color: black;
+}
+
+/*Opciones de la barra de navegacion del sistema*/
+.opcionSistema {
+    background: #0c3b2e;
+}
+
+.opcionSistema button:hover {
+    background-color: #6d9773;
+}
+
+.opcionRegistro {
+    background: #0c3b2e;
+    color: white;
+    border: none;
+}
+
+.opcionesEstadoCivil {
+    color: black;
+}
+
+/*Diseño de las tablas */
+.colorTabla {
+    background: #0c3b2e;
+}
+
+td{
+    color: black;
+}
+
+/*Centrar botones de las acciones dentro en las tablas de informacion*/
+
+.btn_modificar, .btn-eliminar {
+    background: rgb(255, 187, 0);
+    margin: auto;
+}

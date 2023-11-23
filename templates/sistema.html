@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>sistema de información</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/static/estilos.css">
+</head>
+
+<body>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <nav class="navbar fixed-top navbar-expand-lg body-tertiary barraMenu">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03"
+                aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation"
+                style="border: 2px solid #bb8a52;">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <h4 class="navbar-brand" style="color: #FFFFFF;">Sistema Ejidal</h4>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#paginaPrincipal">Home</a>
+                    </li>
+
+                    <!--Boton y menu de registros-->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Registrar
+                        </a>
+                        <ul class="dropdown-menu opcionSistema">
+                            <div class="d-grid gap-2 mx-auto">
+                                <button class="btn btn-success opcionRegistro" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#registroEjidatario">Ejidatarios</button>
+                                <button class="btn btn-success opcionRegistro" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#registroParcelas">Parcelas</button>
+                                <button class="btn btn-success opcionRegistro" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#registroPagos">Pagos</button>
+                                <button class="btn btn-success opcionRegistro" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#registroAdeudos">Adeudos</button>
+                            </div>
+                        </ul>
+                    </li>
+
+
+                    <!--Boton y menu de consultas-->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Consultar
+                        </a>
+                        <ul class="dropdown-menu opcionSistema">
+                            <div class="d-grid gap-2 mx-auto">
+                                <button id="actualizarConsulta" class="btn btn-success opcionRegistro" type="button"
+                                    data-bs-toggle="modal" data-bs-target="#consultaEjidatarios">Ejidatarios</button>
+                                <button class="btn btn-success opcionRegistro" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#consultaParcelas">Parcelas</button>
+                                <button class="btn btn-success opcionRegistro" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#consultaPagos">Pagos</button>
+                                <button class="btn btn-success opcionRegistro" type="button" data-bs-toggle="modal" data-bs-target="#consultaAdeudos">Adeudos</button>
+                            </div>
+                        </ul>
+                    </li>
+                </ul>
+                <button type="button" class="btn btn-outline-warning" style="border:1px solid #bb8a52; margin-right: 10px;"><a href="/static/index.html"></a>
+                    Cerrar sesión
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!--Modal para registro de ejidatarios -->
+    <div class="modal fade" id="registroEjidatario" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5 nombreModal" id="exampleModalLabel" style="margin-left:auto;">Regitrar
+                        ejidatatrio</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formularioRegistroE" class="row g-3">
+                        <!--Inputs para el nombre completo del ejitatario-->
+                        <div class="col-md-4">
+                            <label for="inputNombre" class="form-label" style="color:black;">Nombre</label>
+                            <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre"
+                                id="inputNombre">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="inputApelidoP" class="form-label" style="color:black;">Apellido Paterno</label>
+                            <input type="text" class="form-control" placeholder="Apellido Paterno"
+                                aria-label="Apelldio Paterno" id="inputApellidoP">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="inputApellidoM" class="form-label" style="color:black;">Apellido Materno</label>
+                            <input type="text" class="form-control" placeholder="Apellido Materno"
+                                aria-label="Apellido Materno" id="inputApellidoM">
+                        </div>
+
+                        <div class="col-12"></div>
+
+                        <!--Fila2-->
+
+                        <div class="col-md-3">
+                            <label for="inputFechaN" class="form-label" style="color:black;">Fecha de nacimiento</label>
+                            <input type="date" class="form-control" id="inputFechaN">
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="inputNumTelefono" class="form-label" style="color:black;">Numero
+                                telefonico</label>
+                            <input type="number" class="form-control" placeholder="Numero telefonico"
+                                aria-label="Numero telefonico" id="inputNumTelefono">
+                        </div>
+
+                        <div class="col-md-3">
+                            <h6 style="color: black;">Sexo</h6>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="masculino"
+                                    value="Masculino" style="border:solid 1px black;">
+                                <label class="form-check-label" for="masculino" style="color: black;">Masculino</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="femenino"
+                                    value="Femenino" style="border:solid 1px black;">
+                                <label class="form-check-label" for="femenino" style="color: black;">Femenino</label>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <h6 style="color: black;">Estado civil</h6>
+                            <select id="estadoCivilR" class="form-select" aria-label="Default select example">
+                                <option class="opcionesEstadoCivil" selected>Opciones</option>
+                                <option class="opcionesEstadoCivil" value="Casado">Casado</option>
+                                <option class="opcionesEstadoCivil" value="Soltero">Soltero</option>
+                                <option class="opcionesEstadoCivil" value="Divorciado">Divorciado</option>
+                            </select>
+                        </div>
+
+                        <div class="col-12"></div>
+
+                        <!--Fila3-->
+                        <div class="col-md-3">
+                            <label for="inputEmail" class="form-label" style="color:black;">Correo electronico</label>
+                            <input type="email" class="form-control" id="inputEmail" placeholder="ejemplo@correo.com">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="inputCodigoP" class="form-label" style="color:black;">Codigo postal</label>
+                            <input type="text" class="form-control" id="inputCodigoP" autocomplete="postal-code">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="inputEstado" class="form-label" style="color:black;">Estado</label>
+                            <input type="text" class="form-control" placeholder="México" value="México" id="inputEstado"
+                                disabled readonly>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="inputMunicipio" class="form-label" style="color:black;">Municipio</label>
+                            <input type="text" class="form-control" placeholder="Morelos" value="Morelos"
+                                id="inputMunicipio" disabled readonly>
+                        </div>
+
+                        <div class="col-12"></div>
+
+                        <!--Fila4-->
+                        <div class="col-md-3">
+                            <label for="inputLocalidad" class="form-label" style="color:black;">Localidad</label>
+                            <input type="text" class="form-control" id="inputLocalidad">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="inputDireccion" class="form-label" style="color:black;">Dirección</label>
+                            <input type="text" class="form-control" id="inputDireccion">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="inputCalle" class="form-label" style="color:black;">Calle</label>
+                            <input type="text" class="form-control" id="inputCalle">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="inputCalle1" class="form-label" style="color:black;">Y entre calle</label>
+                            <input type="text" class="form-control" id="inputCalle1">
+                        </div>
+
+                        <div class="col-12"></div>
+
+                        <!--Fila5-->
+                        <div class="col-12 text-center">
+                            <button type="submit" class="btn btn-success">Registrar</button>
+                            <button type="reset" class="btn btn-success">Limpiar</button>
+                            <button type="button" class="btn btn-success" data-bs-dismiss="modal"> Cerrar</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!--Modal para el registro de las parcelas-->
+    <div class="modal fade" id="registroParcelas" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog" id="staticBackdrop">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel" style="color: black;margin-left: 140px;">
+                        Registro de parcelas
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formularioRegistroP" class="row g-3">
+                        <div class="col-12">
+
+                        </div>
+                        <div class="col-12" style="color: black;">Dimensiones de la parcela</div>
+                        <div class="col-md-6">
+                            <label for="inputLargo" class="form-label" style="color:black;">Largo</label>
+                            <div class="input-group">
+                                <input type="number" class="form-control" id="inputLargo">
+                                <span class="input-group-text">metros</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="inputAncho" class="form-label" style="color:black;">Ancho</label>
+                            <div class="input-group">
+                                <input type="number" class="form-control" id="inputAncho">
+                                <span class="input-group-text">metros</span>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="col-md-8">
+                                <label for="inputmtrs" class="form-label" style="color: black;">Metros cuadrados</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="inputmtrs">
+                                    <span class="input-group-text">metros cuadrados</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-10">
+                            <label for="inputPropietario" class="form-label" style="color: black;">Nombre del
+                                propietario</label>
+                            <div class="input-group mb-3">
+                                <input type="number" class="form-control" id="inputPropietario"
+                                    placeholder="Ingrese el id del ejidatario" style="border-right: 2px solid white;">
+                                <button class="btn btn-secondary" type="button" id="button-addon2"
+                                    data-bs-toggle="modal" data-bs-target="#registroEjidatario"
+                                    style="border-right: 2px solid white;">Nuevo</button>
+                                <button class="btn btn-secondary" type="button"
+                                    data-bs-toggle="modal" data-bs-target="#buscarEjidatario">Buscar</button>
+                            </div>
+                        </div>
+                        <div class="col-12 text-center">
+                            <button type="submit" class="btn btn-success">Registrar</button>
+                            <button type="reset" class="btn btn-success">Limpiar</button>
+                            <button type="button" class="btn btn-success" data-bs-dismiss="modal"> Cerrar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para busquedas -->
+    <div class="modal fade" id="buscarEjidatario" tabindex="-1" aria-labelledby="exampleModalToggleLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalToggleLabel" style="color: black;">
+                        Buscar
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formularioBuscar" class="row g-3">
+                        <div class="input-group mb-3">
+                            <input id="inputBuscar" type="number" class="form-control" placeholder="Ingrese el id del ejidatario" aria-label="Ingrese el id del ejidatario" name="id_ejidatario">
+                            <button class="btn btn-secondary" type="button" id="buttonBuscar">Buscar</button>
+                          </div>
+                          <button class="btn btn-secondary" type="button" id="buttonAceptar">Aceptar</button>
+                          </div>  
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Modal para el registro de las pagos-->
+    <div class="modal fade" id="registroPagos" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog" id="staticBackdrop">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel" style="color: black;margin-left: 140px;">
+                        Registro de pagos
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formularioPagos" class="row g-3">
+                        <div class="col-12">
+                            <label for="inputNomPago" class="form-label" style="color:black;">Nombre del
+                                propietario</label>
+                            <input type="number" class="form-control" id="inputNomPago" placeholder="Ingrese el id del ejidatario">
+                        </div>
+
+                        <div class="col-md-12">
+                            <label for="inputConcepto" class="form-label" style="color: black;">Concepto de
+                                pago</label>
+                            <input type="text" class="form-control" id="inputConcepto">
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="inputNumParP" class="form-label" style="color: black;">Numero de parcela</label>
+                            <input type="number" class="form-control" id="inputNumParP" placeholder="Ingrese el numero de parcela">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="inputLocalidadP" class="form-label" style="color: black;">Localidad</label>
+                            <input type="number" class="form-control" id="inputLocalidadP">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="inputMonto" class="form-label" style="color: black;">Monto</label>
+                            <div class="input-group">
+                                <span class="input-group-text">$</span>
+                                <input type="number" class="form-control" id="inputMonto">
+                            </div>
+                        </div>
+                        <div class="col-md-8"></div>
+                        <div class="col-md-4">
+                            <label for="inputAdeudos" class="form-label" style="color: black;">Adeudos</label>
+                            <div class="input-group">
+                                <span class="input-group-text">$</span>
+                                <input type="number" class="form-control" id="inputAdeudos">
+                            </div>
+                        </div>
+                        <div class="col-md-8"></div>
+                        <div class="col-md-4">
+                            <label for="inputTotal" class="form-label" style="color: black;">Toltal</label>
+                            <div class="input-group">
+                                <span class="input-group-text">$</span>
+                                <input type="number" class="form-control" id="inputTotalP">
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-12 text-center">
+                            <button type="submit" class="btn btn-success">Registrar</button>
+                            <button type="reset" class="btn btn-success">Limpiar</button>
+                            <button type="button" class="btn btn-success" data-bs-dismiss="modal"> Cerrar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--Modal para el registro de las adeudos-->
+    <div class="modal fade" id="registroAdeudos" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog" id="staticBackdrop">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel" style="color: black;margin-left: 140px;">
+                        Registro de pagos
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formularioAdeudos" class="row g-3">
+
+                        <div class="col-md-8">
+                            <label for="inputParA" class="form-label" style="color: black;">Numero de parcela</label>
+                            <input type="number" class="form-control" id="inputParA">
+                        </div>
+                        <div class="col-md-4"></div>
+                        <div class="col-md-6">
+                            <label for="inputAnios" class="form-label" style="color: black;">Años de adeudo</label>
+                            <input type="number" class="form-control" id="inputAnios">
+                        </div>
+                        <div class="col-md-6"></div>
+
+
+                        <div class="col-md-8"></div>
+                        <div class="col-md-4">
+                            <label for="inputTotal" class="form-label" style="color: black;">Total</label>
+                            <div class="input-group">
+                                <span class="input-group-text">$</span>
+                                <input type="number" class="form-control" id="inputTotal">
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-12 text-center">
+                            <button type="submit" class="btn btn-success">Registrar</button>
+                            <button type="reset" class="btn btn-success">Limpiar</button>
+                            <button type="button" class="btn btn-success" data-bs-dismiss="modal"> Cerrar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Modal para consulta de ejidatarios-->
+    <div class="modal fade" id="consultaEjidatarios" tabindex="-1" aria-labelledby="exampleModalToggleLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <nav class="navbar fixed-top navbar-expand-lg body-tertiary barraMenu">
+                        <div class="container-fluid">
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03"
+                                aria-expanded="false" aria-label="Toggle navigation" style="border: 2px solid #bb8a52;">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <h4 class="navbar-brand" style="color: #FFFFFF;">Sistema Ejidal</h4>
+                            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                    <li class="nav-item">
+                                        <button type="button" class="btn btn-success opcionRegistro"
+                                            data-bs-target="#consultaParcelas" data-bs-toggle="modal">Parcelas</button>
+                                    </li>
+                                    <li class="nav-item">
+                                        <button type="button" class="btn btn-success opcionRegistro"
+                                            data-bs-target="#consultaPagos" data-bs-toggle="modal">Pagos</button>
+                                    </li>
+                                    <li class="nav-item">
+                                        <button type="button" class="btn btn-success opcionRegistro"
+                                            data-bs-target="#consultaAdeudos" data-bs-toggle="modal">Adeudos</button>
+                                    </li>
+                                    <li class="nav-item">
+                                        <button type="button" class="btn btn-success opcionRegistro"
+                                            data-bs-target="#registroEjidatario" data-bs-toggle="modal">Registrar
+                                            ejidatario</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <div class="modal-body">
+                    <form class="row g-3">
+                        <div class="col-12">
+                            <h1 class="text-center h1 nombreModal" style="margin-top: 30px;">Información de ejidatarios
+                            </h1>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table id="tablaDatosE" class="table table-striped">
+                                <thead class="colorTabla text-center">
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Apellido paterno</th>
+                                        <th scope="col">Apellido materno</th>
+                                        <th scope="col">Fecha de nacimiento</th>
+                                        <th scope="col">Telefono</th>
+                                        <th scope="col">Sexo</th>
+                                        <th scope="col">Estado civil</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">CP</th>
+                                        <th scope="col">Estado</th>
+                                        <th scope="col">Municipio</th>
+                                        <th scope="col">Localidad</th>
+                                        <th scope="col">Dirección</th>
+                                        <th scope="col">Calle</th>
+                                        <th scope="col">Entre calle</th>
+                                        <th scope="col">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tablaEjidatarios text-center">
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="col-12 text-center">
+                            <button type="submit" class="btn btn-success">Registrar</button>
+                            <button type="reset" class="btn btn-success">Limpiar</button>
+                            <button type="button" class="btn btn-success" data-bs-dismiss="modal"> Cerrar</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!--Modal para consulta de parcelas -->
+    <div class="modal fade" id="consultaParcelas" tabindex="-1" aria-labelledby="exampleModalToggleLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <nav class="navbar fixed-top navbar-expand-lg body-tertiary barraMenu">
+                        <div class="container-fluid">
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03"
+                                aria-expanded="false" aria-label="Toggle navigation" style="border: 2px solid #bb8a52;">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <h4 class="navbar-brand" style="color: #FFFFFF;">Sistema Ejidal</h4>
+                            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                    <li class="nav-item">
+                                        <button type="button" class="btn btn-success opcionRegistro"
+                                            data-bs-target="#consultaEjidatarios"
+                                            data-bs-toggle="modal">Ejidatarios</button>
+                                    </li>
+                                    <li class="nav-item">
+                                        <button type="button" class="btn btn-success opcionRegistro"
+                                            data-bs-target="#consultaPagos" data-bs-toggle="modal">Pagos</button>
+                                    </li>
+                                    <li class="nav-item">
+                                        <button type="button" class="btn btn-success opcionRegistro"
+                                            data-bs-target="#consultaAdeudos" data-bs-toggle="modal">Adeudos</button>
+                                    </li>
+                                    <li class="nav-item">
+                                        <button type="button" class="btn btn-success opcionRegistro"
+                                            data-bs-target="#registroParcelas" data-bs-toggle="modal">Registrar
+                                            parcelas</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <div class="modal-body">
+                    <form class="row g-3">
+                        <div class="col-12">
+                            <h1 class="text-center h1 nombreModal" style="margin-top: 30px;">Información de parcelas
+                            </h1>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table id="tablaDatosP" class="table table-striped">
+                                <thead class="colorTabla text-center">
+                                    <tr>
+                                        <th scope="col">Numero de parcela</th>
+                                        <th scope="col">Largo</th>
+                                        <th scope="col">Ancho</th>
+                                        <th scope="col">Metros Cuadrados</th>
+                                        <th scope="col">Nombre del propietario</th>
+                                        <th scope="col">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tablaParcela" class="text-center">
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="col-12 text-center">
+                            <button type="submit" class="btn btn-success">Registrar</button>
+                            <button type="reset" class="btn btn-success">Limpiar</button>
+                            <button type="button" class="btn btn-success" data-bs-dismiss="modal"> Cerrar</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!--Modal para consulta de pagos-->
+    <div class="modal fade" id="consultaPagos" tabindex="-1" aria-labelledby="exampleModalToggleLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <nav class="navbar fixed-top navbar-expand-lg body-tertiary barraMenu">
+                        <div class="container-fluid">
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03"
+                                aria-expanded="false" aria-label="Toggle navigation" style="border: 2px solid #bb8a52;">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <h4 class="navbar-brand" style="color: #FFFFFF;">Sistema Ejidal</h4>
+                            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                    <li class="nav-item">
+                                        <button type="button" class="btn btn-success opcionRegistro"
+                                            data-bs-target="#consultaEjidatarios"
+                                            data-bs-toggle="modal">Ejidatarios</button>
+                                    </li>
+                                    <li class="nav-item">
+                                        <button type="button" class="btn btn-success opcionRegistro"
+                                            data-bs-target="#consultaParcelas" data-bs-toggle="modal">Parcelas</button>
+                                    </li>
+                                    <li class="nav-item">
+                                        <button type="button" class="btn btn-success opcionRegistro"
+                                            data-bs-target="#consultaAdeudos" data-bs-toggle="modal">Adeudos</button>
+                                    </li>
+                                    <li class="nav-item">
+                                        <button type="button" class="btn btn-success opcionRegistro"
+                                            data-bs-target="#registroPagos" data-bs-toggle="modal">Registrar
+                                            pagos</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <div class="modal-body">
+                    <form class="row g-3">
+                        <div class="col-12">
+                            <h1 class="text-center h1 nombreModal" style="margin-top: 30px;">Información de pagos</h1>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table id="tablaDatosPa" class="table table-striped">
+                                <thead class=" text-center colorTabla">
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Nombre del propietario</th>
+                                        <th scope="col">Concepto</th>
+                                        <th scope="col">Numero de parcela</th>
+                                        <th scope="col">Localidad</th>
+                                        <th scope="col">Monto</th>
+                                        <th scope="col">Adeudos</th>
+                                        <th scope="col">Total</th>
+                                        <th scope="col">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tablaPagos" class="text-center">
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="col-12 text-center">
+                            <button type="submit" class="btn btn-success">Registrar</button>
+                            <button type="reset" class="btn btn-success">Limpiar</button>
+                            <button type="button" class="btn btn-success" data-bs-dismiss="modal"> Cerrar</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!--Modal para consulta de adeudos -->
+    <div class="modal fade" id="consultaAdeudos" tabindex="-1" aria-labelledby="exampleModalToggleLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <nav class="navbar fixed-top navbar-expand-lg body-tertiary barraMenu">
+                        <div class="container-fluid">
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03"
+                                aria-expanded="false" aria-label="Toggle navigation" style="border: 2px solid #bb8a52;">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <h4 class="navbar-brand" style="color: #FFFFFF;">Sistema Ejidal</h4>
+                            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                    <li class="nav-item">
+                                        <button type="button" class="btn btn-success opcionRegistro"
+                                            data-bs-target="#consultaEjidatarios"
+                                            data-bs-toggle="modal">Ejidatarios</button>
+                                    </li>
+                                    <li class="nav-item">
+                                        <button type="button" class="btn btn-success opcionRegistro"
+                                            data-bs-target="#consultaParcelas" data-bs-toggle="modal">Parcelas</button>
+                                    </li>
+                                    <li class="nav-item">
+                                        <button type="button" class="btn btn-success opcionRegistro"
+                                            data-bs-target="#consultaPagos" data-bs-toggle="modal">Pagos</button>
+                                    </li>
+                                    <li class="nav-item">
+                                        <button type="button" class="btn btn-success opcionRegistro"
+                                            data-bs-target="#registroAdeudos" data-bs-toggle="modal">Registrar
+                                            adeudos</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <div class="modal-body">
+                    <form class="row g-3">
+                        <div class="col-12">
+                            <h1 class="text-center h1 nombreModal" style="margin-top: 30px;">Información de adeudos</h1>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table id="tablaDatosA" class="table table-striped">
+                                <thead class="colorTabla text-center">
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">NUmero de parcela</th>
+                                        <th scope="col">Años</th>
+                                        <th scope="col">Total</th>
+                                        <th scope="col">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tablaAdeudos text-center">
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="col-12 text-center">
+                            <button type="submit" class="btn btn-success">Registrar</button>
+                            <button type="reset" class="btn btn-success">Limpiar</button>
+                            <button type="button" class="btn btn-success" data-bs-dismiss="modal"> Cerrar</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/main.js"></script>

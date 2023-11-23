@@ -1,0 +1,2 @@
+class LoginUsuarios:
+    pass
